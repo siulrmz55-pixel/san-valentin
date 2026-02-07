@@ -67,7 +67,11 @@
     </style>
 </head>
 <body>
-
+    
+    <audio id="bgMusic" loop>
+        <source src="musica.mp3" type="audio/mpeg">
+    </audio>
+    
     <div class="card">
         <img src="nosotros.jpeg" alt="Nuestra foto juntos 💕">
 
@@ -89,26 +93,51 @@
     </div>
 
 <script>
+  
+    const music = document.getElementById("bgMusic");
+
+    document.body.addEventListener("click", () => {
+        music.volume = 0.5;
+        music.play().catch(() => {});
+    }, { once: true });
+
     const noBtn = document.getElementById("no");
 
-    noBtn.addEventListener("mouseover", () => {
+    noBtn.addEventListener("mouseover", moverNo);
+    noBtn.addEventListener("touchstart", moverNo);
+
+    function moverNo() {
         const x = Math.random() * (window.innerWidth - 100);
         const y = Math.random() * (window.innerHeight - 50);
         noBtn.style.left = x + "px";
         noBtn.style.top = y + "px";
-    });
+    }
 
-document.getElementById("yes").addEventListener("click", () => {
+    document.getElementById("yes").addEventListener("click", () => {
+        lanzarCorazones();
+
     const mensaje = encodeURIComponent(
         "Si, preciosotee, obvio que quiero ver una película contigo"
     );
     window.open(
         "https://wa.me/528771157389text=" + mensaje,
-        "_blank"
-    );
-});
+            );
+        }, 800);
+    });
+
+    function lanzarCorazones() {
+        for (let i = 0; i < 20; i++) {
+            const heart = document.createElement("div");
+            heart.className = "heart";
+            heart.innerHTML = "💖";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+            document.body.appendChild(heart);
+
+            setTimeout(() => heart.remove(), 4000);
+        }
+    }
 </script>
 
 </body>
 </html>
-
