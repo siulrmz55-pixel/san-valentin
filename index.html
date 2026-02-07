@@ -2,13 +2,15 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>¿Quieres ver una película conmigo?</title>
+    <title>¿Quieres ver una película conmigo? 💖</title>
+
     <style>
         body {
             font-family: 'Comic Sans MS', cursive;
             background: linear-gradient(135deg, #ff9a9e, #fad0c4);
             text-align: center;
             padding: 40px;
+            overflow: hidden;
         }
 
         .card {
@@ -18,6 +20,8 @@
             max-width: 450px;
             margin: auto;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 2;
         }
 
         img {
@@ -57,6 +61,9 @@
         #no {
             background-color: #ccc;
             position: absolute;
+            top: 80%;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         .footer {
@@ -64,36 +71,58 @@
             font-size: 14px;
             color: #555;
         }
+
+        
+        .heart {
+            position: fixed;
+            bottom: -10px;
+            font-size: 24px;
+            animation: floatUp 4s linear forwards;
+        }
+
+        @keyframes floatUp {
+            from {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(-100vh);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
+
 <body>
-    
+
+    <!-- 🎶 Música -->
     <audio id="bgMusic" loop>
         <source src="musica.mp3" type="audio/mpeg">
     </audio>
-    
+
     <div class="card">
         <img src="nosotros.jpeg" alt="Nuestra foto juntos 💕">
 
-        <h1>Invitación especial, para alguien especial</h1>
+        <h1>Invitación especial para alguien muy especial</h1>
+
         <p>
             Mi amorcito,<br><br>
-            Este <b>14 de febrero</b> me encantaría ver una película contigo💖
+            Este <b>14 de febrero</b> me encantaría ver una película contigo
         </p>
 
         <h2>¿Aceptas? </h2>
 
-        <button id="yes">Sí</button>
+        <button id="yes">Sí </button>
     </div>
 
-    <button id="no">No</button>
+    <button id="no">No </button>
 
     <div class="footer">
-        Hecho con amor solo para ti, Vale💗
+        Hecho con amor solo para ti, Vale 💗
     </div>
 
 <script>
-  
+    
     const music = document.getElementById("bgMusic");
 
     document.body.addEventListener("click", () => {
@@ -101,6 +130,7 @@
         music.play().catch(() => {});
     }, { once: true });
 
+    
     const noBtn = document.getElementById("no");
 
     noBtn.addEventListener("mouseover", moverNo);
@@ -113,14 +143,18 @@
         noBtn.style.top = y + "px";
     }
 
+    
     document.getElementById("yes").addEventListener("click", () => {
         lanzarCorazones();
 
-    const mensaje = encodeURIComponent(
-        "Si, preciosotee, obvio que quiero ver una película contigo"
-    );
-    window.open(
-        "https://wa.me/528771157389text=" + mensaje,
+        const mensaje = encodeURIComponent(
+            "Sí, preciosotee ,obvio que quiero ver una película contigo"
+        );
+
+        setTimeout(() => {
+            window.open(
+                "https://wa.me/528771157389?text=" + mensaje,
+                "_blank"
             );
         }, 800);
     });
@@ -131,7 +165,6 @@
             heart.className = "heart";
             heart.innerHTML = "💖";
             heart.style.left = Math.random() * 100 + "vw";
-            heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
             document.body.appendChild(heart);
 
             setTimeout(() => heart.remove(), 4000);
