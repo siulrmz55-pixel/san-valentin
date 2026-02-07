@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>¿Quieres ver una película conmigo? 💖</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            text-align: center;
+            padding: 40px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 25px;
+            padding: 30px;
+            max-width: 450px;
+            margin: auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        img {
+            width: 100%;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #ff4d6d;
+        }
+
+        p {
+            font-size: 18px;
+        }
+
+        button {
+            font-size: 18px;
+            padding: 12px 25px;
+            margin: 10px;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        #yes {
+            background-color: #ff4d6d;
+            color: white;
+        }
+
+        #yes:hover {
+            background-color: #ff1c4d;
+            transform: scale(1.1);
+        }
+
+        #no {
+            background-color: #ccc;
+            position: absolute;
+        }
+
+        .footer {
+            margin-top: 25px;
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <img src="nosotros.jpeg" alt="Nuestra foto juntos 💕">
+
+        <h1>Invitación especial, para alguien especial</h1>
+        <p>
+            Mi amorcito,<br><br>
+            Este <b>14 de febrero</b> me encantaría ver una película contigo💖
+        </p>
+
+        <h2>¿Aceptas? </h2>
+
+        <button id="yes">Sí</button>
+    </div>
+
+    <button id="no">No</button>
+
+    <div class="footer">
+        Hecho con amor solo para ti, Vale💗
+    </div>
+
+<script>
+    const noBtn = document.getElementById("no");
+
+    noBtn.addEventListener("mouseover", () => {
+        const x = Math.random() * (window.innerWidth - 100);
+        const y = Math.random() * (window.innerHeight - 50);
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
+    });
+
+    document.getElementById("yes").addEventListener("click", () => {
+        const mensaje = encodeURIComponent(
+            "Siiii preciosote, obvio que quiero ver una película contigo este 14 de febrero"
+        );
+        window.open("https://wa.me/?text=" + mensaje, "_blank");
+    });
+</script>
+
+</body>
+</html>
